@@ -18,10 +18,9 @@ class Game extends React.Component {
   onCountryClick = (answer) => {
     if (answer === this.state.answer) {
       console.log('Correct!');
-      this.setState = { score: this.state.score + 1 };
+      this.setState((state) => ({ score: state.score + 1 }));
     } else {
       console.log('Wrong');
-      this.setState = { score: this.state.score };
     }
   };
 
