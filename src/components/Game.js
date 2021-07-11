@@ -4,15 +4,10 @@ import './Game.css';
 
 class Game extends React.Component {
   state = {
-    capitalCity: faker.address.city(),
-    countries: [
-      faker.address.country(),
-      faker.address.country(),
-      faker.address.country(),
-      faker.address.country(),
-    ],
-    answer: Math.floor(Math.random() * 4),
-    score: 0,
+    capitalCity: '',
+    countries: [],
+    answer: null,
+    score: null,
   };
 
   onCountryClick = (answer) => {
@@ -22,7 +17,32 @@ class Game extends React.Component {
     } else {
       console.log('Wrong');
     }
+
+    this.setState({
+      capitalCity: faker.address.city(),
+      countries: [
+        faker.address.country(),
+        faker.address.country(),
+        faker.address.country(),
+        faker.address.country(),
+      ],
+      answer: Math.floor(Math.random() * 4),
+    });
   };
+
+  componentDidMount() {
+    this.setState({
+      capitalCity: faker.address.city(),
+      countries: [
+        faker.address.country(),
+        faker.address.country(),
+        faker.address.country(),
+        faker.address.country(),
+      ],
+      answer: Math.floor(Math.random() * 4),
+      score: 0,
+    });
+  }
 
   componentDidUpdate() {
     console.log('Update');
