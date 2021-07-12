@@ -6,6 +6,7 @@ const CountryList = ({
   onCountryClick,
   answer,
   selectedCountry,
+  disabled,
 }) => {
   return (
     <div className='ui two centered grid'>
@@ -16,6 +17,7 @@ const CountryList = ({
           option={0}
           answer={answer}
           selectedCountry={selectedCountry}
+          disabled={disabled}
         />
         <CountryItem
           country={countries[1]}
@@ -23,6 +25,7 @@ const CountryList = ({
           option={1}
           answer={answer}
           selectedCountry={selectedCountry}
+          disabled={disabled}
         />
       </div>
       <div className='sixteen column centered row'>
@@ -32,6 +35,7 @@ const CountryList = ({
           option={2}
           answer={answer}
           selectedCountry={selectedCountry}
+          disabled={disabled}
         />
         <CountryItem
           country={countries[3]}
@@ -39,6 +43,7 @@ const CountryList = ({
           option={3}
           answer={answer}
           selectedCountry={selectedCountry}
+          disabled={disabled}
         />
       </div>
     </div>

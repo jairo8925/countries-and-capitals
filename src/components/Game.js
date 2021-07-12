@@ -2,6 +2,7 @@ import "./Game.css";
 import React from "react";
 import countriesService from "../apis/countries";
 import CountryList from "./CountryList";
+import LoadingScreen from "./LoadingScreen";
 
 class Game extends React.Component {
   state = {
@@ -10,13 +11,37 @@ class Game extends React.Component {
     answer: null,
     score: 0,
     selectedCountry: null,
+    disabled: false,
   };
 
   componentDidMount() {
-    this.setCountries();
+    this.setCountries(2000);
   }
 
-  setCountries = async () => {
+  onCountryClick = (answer) => {
+    if (this.state.disabled) {
+      return;
+    }
+
+    this.setState(
+      {
+        selectedCountry: answer,
+        disabled: true,
+      },
+      () => console.log("Selected option", this.state.selectedCountry)
+    );
+
+    if (answer === this.state.answer) {
+      console.log("Correct.");
+      this.setState((state) => ({ score: state.score + 1 }));
+    } else {
+      console.log("Wrong.");
+    }
+
+    this.setCountries();
+  };
+
+  setCountries = async (time = 2000) => {
     const response = await countriesService.get("/all", {
       params: {
         fields: "name;capital",
@@ -31,12 +56,15 @@ class Game extends React.Component {
     console.log("Answer:", answer);
     const capitalCity = countriesList[answer].capital;
 
-    this.setState({
-      capitalCity: capitalCity,
-      countries: countries,
-      answer: answer,
-      selectedCountry: null,
-    });
+    setTimeout(() => {
+      this.setState({
+        capitalCity: capitalCity,
+        countries: countries,
+        answer: answer,
+        selectedCountry: null,
+        disabled: false,
+      });
+    }, 0);
   };
 
   chooseAnswer(arr) {
@@ -63,25 +91,11 @@ class Game extends React.Component {
     return result;
   }
 
-  onCountryClick = (answer) => {
-    if (answer === this.state.answer) {
-      console.log("Correct.");
-      this.setState((state) => ({ score: state.score + 1 }));
-    } else {
-      console.log("Wrong.");
+  render() {
+    if (!this.state.capitalCity) {
+      return <LoadingScreen />;
     }
 
-    this.setState(
-      {
-        selectedCountry: answer,
-      },
-      () => console.log("Selected option", this.state.selectedCountry)
-    );
-
-    this.setCountries();
-  };
-
-  render() {
     return (
       <div className='ui container'>
         <div className='ui centered huge header'>{this.state.capitalCity}</div>
@@ -90,6 +104,7 @@ class Game extends React.Component {
           onCountryClick={this.onCountryClick}
           answer={this.state.answer}
           selectedCountry={this.state.selectedCountry}
+          disabled={this.state.disabled}
         />
         <div>
           <h2 className='score'>{this.state.score}</h2>

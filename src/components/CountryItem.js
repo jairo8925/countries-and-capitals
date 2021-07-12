@@ -6,12 +6,14 @@ const CountryItem = ({
   option,
   answer,
   selectedCountry,
+  disabled,
 }) => {
   return (
     <div className='six wide column center aligned'>
       <div
         className='ui massive segment city'
         onClick={() => onCountryClick(option)}
+        disabled={disabled}
         style={{
           backgroundColor: !selectedCountry
             ? "transparent"
