@@ -1,5 +1,5 @@
 import React from 'react';
-import faker from 'faker';
+import countriesService from '../apis/countries';
 import './Game.css';
 
 class Game extends React.Component {
@@ -7,8 +7,42 @@ class Game extends React.Component {
     capitalCity: '',
     countries: [],
     answer: null,
-    score: null,
+    score: 0,
   };
+
+  componentDidMount() {
+    this.setCountries();
+  }
+
+  setCountries = async () => {
+    const response = await countriesService.get('/all');
+    const res = this.getRandom(response.data, 4);
+    let countries = res.map((r) => {
+      return r.name;
+    });
+    const answer = Math.floor(Math.random() * res.length);
+    const capitalCity = res[answer].capital;
+
+    this.setState({
+      capitalCity: capitalCity,
+      countries: countries,
+      answer: answer,
+    });
+  };
+
+  getRandom(arr, n) {
+    let result = new Array(n),
+      len = arr.length,
+      taken = new Array(len);
+    if (n > len)
+      throw new RangeError('getRandom: more elements taken than available');
+    while (n--) {
+      let x = Math.floor(Math.random() * len);
+      result[n] = arr[x in taken ? taken[x] : x];
+      taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+  }
 
   onCountryClick = (answer) => {
     if (answer === this.state.answer) {
@@ -18,35 +52,11 @@ class Game extends React.Component {
       console.log('Wrong');
     }
 
+    this.setCountries();
     this.setState({
-      capitalCity: faker.address.city(),
-      countries: [
-        faker.address.country(),
-        faker.address.country(),
-        faker.address.country(),
-        faker.address.country(),
-      ],
       answer: Math.floor(Math.random() * 4),
     });
   };
-
-  componentDidMount() {
-    this.setState({
-      capitalCity: faker.address.city(),
-      countries: [
-        faker.address.country(),
-        faker.address.country(),
-        faker.address.country(),
-        faker.address.country(),
-      ],
-      answer: Math.floor(Math.random() * 4),
-      score: 0,
-    });
-  }
-
-  componentDidUpdate() {
-    console.log('Update');
-  }
 
   render() {
     return (
@@ -90,7 +100,9 @@ class Game extends React.Component {
             </div>
           </div>
         </div>
-        <div>{this.state.score}</div>
+        <div>
+          <h2 className="score">{this.state.score}</h2>
+        </div>
       </div>
     );
   }
