@@ -5,40 +5,28 @@ const CountryList = ({ countries, onCountryClick }) => {
   return (
     <div className='ui two centered grid'>
       <div className='sixteen column centered row'>
-        <div className='six wide column center aligned'>
-          <div
-            className='ui massive segment city'
-            onClick={() => onCountryClick(0)}
-          >
-            {countries[0]}
-          </div>
-        </div>
-        <div className='six wide column center aligned'>
-          <div
-            className='ui massive segment city'
-            onClick={() => onCountryClick(1)}
-          >
-            {countries[1]}
-          </div>
-        </div>
+        <CountryItem
+          country={countries[0]}
+          onCountryClick={onCountryClick}
+          option={0}
+        />
+        <CountryItem
+          country={countries[1]}
+          onCountryClick={onCountryClick}
+          option={1}
+        />
       </div>
       <div className='sixteen column centered row'>
-        <div className='six wide column center aligned'>
-          <div
-            className='ui massive segment city'
-            onClick={() => onCountryClick(2)}
-          >
-            {countries[2]}
-          </div>
-        </div>
-        <div className='six wide column center aligned'>
-          <div
-            className='ui massive segment city'
-            onClick={() => onCountryClick(3)}
-          >
-            {countries[3]}
-          </div>
-        </div>
+        <CountryItem
+          country={countries[2]}
+          onCountryClick={onCountryClick}
+          option={2}
+        />
+        <CountryItem
+          country={countries[3]}
+          onCountryClick={onCountryClick}
+          option={3}
+        />
       </div>
     </div>
   );

@@ -21,7 +21,9 @@ class Game extends React.Component {
     let countries = res.map((r) => {
       return r.name;
     });
+
     const answer = Math.floor(Math.random() * res.length);
+    console.log(answer);
     const capitalCity = res[answer].capital;
 
     this.setState({
