@@ -35,6 +35,7 @@ class Game extends React.Component {
       capitalCity: capitalCity,
       countries: countries,
       answer: answer,
+      selectedCountry: null,
     });
   };
 
@@ -87,6 +88,8 @@ class Game extends React.Component {
         <CountryList
           countries={this.state.countries}
           onCountryClick={this.onCountryClick}
+          answer={this.state.answer}
+          selectedCountry={this.state.selectedCountry}
         />
         <div>
           <h2 className='score'>{this.state.score}</h2>
