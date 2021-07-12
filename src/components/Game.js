@@ -9,6 +9,7 @@ class Game extends React.Component {
     countries: [],
     answer: null,
     score: 0,
+    selectedCountry: null,
   };
 
   componentDidMount() {
@@ -16,15 +17,19 @@ class Game extends React.Component {
   }
 
   setCountries = async () => {
-    const response = await countriesService.get("/all");
-    const res = this.getRandom(response.data, 4);
-    let countries = res.map((r) => {
+    const response = await countriesService.get("/all", {
+      params: {
+        fields: "name;capital",
+      },
+    });
+    const countriesList = this.chooseCountries(response.data, 4);
+    let countries = countriesList.map((r) => {
       return r.name;
     });
 
-    const answer = Math.floor(Math.random() * res.length);
-    console.log(answer);
-    const capitalCity = res[answer].capital;
+    const answer = this.chooseAnswer(countriesList);
+    console.log("Answer:", answer);
+    const capitalCity = countriesList[answer].capital;
 
     this.setState({
       capitalCity: capitalCity,
@@ -33,7 +38,17 @@ class Game extends React.Component {
     });
   };
 
-  getRandom(arr, n) {
+  chooseAnswer(arr) {
+    let answer = Math.floor(Math.random() * arr.length);
+    let capitalCity = arr[answer].capital;
+    while (!capitalCity) {
+      answer = (answer + 1) % 4;
+      capitalCity = arr[answer].capital;
+    }
+    return answer;
+  }
+
+  chooseCountries(arr, n) {
     let result = new Array(n),
       len = arr.length,
       taken = new Array(len);
@@ -49,16 +64,20 @@ class Game extends React.Component {
 
   onCountryClick = (answer) => {
     if (answer === this.state.answer) {
-      console.log("Correct!");
+      console.log("Correct.");
       this.setState((state) => ({ score: state.score + 1 }));
     } else {
-      console.log("Wrong");
+      console.log("Wrong.");
     }
 
+    this.setState(
+      {
+        selectedCountry: answer,
+      },
+      () => console.log("Selected option", this.state.selectedCountry)
+    );
+
     this.setCountries();
-    this.setState({
-      answer: Math.floor(Math.random() * 4),
-    });
   };
 
   render() {
