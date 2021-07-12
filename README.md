@@ -5,6 +5,7 @@
 <br></br>
 
 ### TODO:
+- Refactor code into several small components
 - Update option to be red or green according to user's answer
 - Remove capital city from list once used
 - Add a timer
