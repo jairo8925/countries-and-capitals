@@ -5,10 +5,13 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 class Map extends React.Component {
   render() {
     return (
-      <MapContainer center={[0, 0]} zoom={17}>
+      <MapContainer center={[0, 0]} zoom={2}>
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="http://tile.stamen.com/terrain-background/{z}/{x}/{y}.jpg"
+          attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, 
+          under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. 
+          Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under 
+          <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
         />
         <Marker
           position={[Number(this.props.lat), Number(this.props.long)]}
