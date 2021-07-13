@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/countries-and-capitals/static/css/main.00913661.chunk.css",
-    "main.js": "/countries-and-capitals/static/js/main.35dba1b4.chunk.js",
-    "main.js.map": "/countries-and-capitals/static/js/main.35dba1b4.chunk.js.map",
+    "main.css": "/countries-and-capitals/static/css/main.7da08b99.chunk.css",
+    "main.js": "/countries-and-capitals/static/js/main.d95de984.chunk.js",
+    "main.js.map": "/countries-and-capitals/static/js/main.d95de984.chunk.js.map",
     "runtime-main.js": "/countries-and-capitals/static/js/runtime-main.4f88af9c.js",
     "runtime-main.js.map": "/countries-and-capitals/static/js/runtime-main.4f88af9c.js.map",
-    "static/js/2.d136b103.chunk.js": "/countries-and-capitals/static/js/2.d136b103.chunk.js",
-    "static/js/2.d136b103.chunk.js.map": "/countries-and-capitals/static/js/2.d136b103.chunk.js.map",
+    "static/js/2.28775765.chunk.js": "/countries-and-capitals/static/js/2.28775765.chunk.js",
+    "static/js/2.28775765.chunk.js.map": "/countries-and-capitals/static/js/2.28775765.chunk.js.map",
     "index.html": "/countries-and-capitals/index.html",
-    "static/css/main.00913661.chunk.css.map": "/countries-and-capitals/static/css/main.00913661.chunk.css.map",
-    "static/js/2.d136b103.chunk.js.LICENSE.txt": "/countries-and-capitals/static/js/2.d136b103.chunk.js.LICENSE.txt"
+    "static/css/main.7da08b99.chunk.css.map": "/countries-and-capitals/static/css/main.7da08b99.chunk.css.map",
+    "static/js/2.28775765.chunk.js.LICENSE.txt": "/countries-and-capitals/static/js/2.28775765.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4f88af9c.js",
-    "static/js/2.d136b103.chunk.js",
-    "static/css/main.00913661.chunk.css",
-    "static/js/main.35dba1b4.chunk.js"
+    "static/js/2.28775765.chunk.js",
+    "static/css/main.7da08b99.chunk.css",
+    "static/js/main.d95de984.chunk.js"
   ]
 }
