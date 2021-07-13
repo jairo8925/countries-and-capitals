@@ -38,7 +38,7 @@ class Map extends React.Component {
           keepInView={true}
           autoPan={true}
         >
-          <Popup>
+          <Popup className='info'>
             <p>Population: {this.props.info.population}</p>
             <p>
               Language(s): {languages.length > 0 ? languages.join(", ") : ""}

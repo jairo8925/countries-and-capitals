@@ -4,3 +4,7 @@
   margin: 35px 0 30px 0;
   border: 1px solid black;
 }
+
+.info p {
+  margin: 3px 0;
+}
