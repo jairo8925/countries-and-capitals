@@ -1,26 +1,12 @@
-import React from "react";
+import './CountryItem.css';
+import React from 'react';
 
-const CountryItem = ({
-  country,
-  onCountryClick,
-  option,
-  answer,
-  selectedCountry,
-  disabled,
-}) => {
+const CountryItem = ({ country, onCountryClick, option }) => {
   return (
-    <div className='six wide column center aligned'>
+    <div className="six wide column center aligned">
       <div
-        className='ui massive segment city'
+        className="ui huge segment city"
         onClick={() => onCountryClick(option)}
-        disabled={disabled}
-        style={{
-          backgroundColor: !selectedCountry
-            ? "transparent"
-            : selectedCountry === answer
-            ? "green"
-            : "red",
-        }}
       >
         {country}
       </div>

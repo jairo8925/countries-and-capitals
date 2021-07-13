@@ -1,0 +1,14 @@
+.city {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000000 !important;
+  margin: 25px;
+  height: 100px;
+}
+
+.city:hover {
+  cursor: pointer;
+  background-color: green !important;
+  color: white;
+}

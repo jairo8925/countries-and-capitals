@@ -1,70 +1,64 @@
-import "./Game.css";
-import React from "react";
-import countriesService from "../apis/countries";
-import CountryList from "./CountryList";
-import LoadingScreen from "./LoadingScreen";
+import './Game.css';
+import React from 'react';
+import countriesService from '../apis/countries';
+import CountryList from './CountryList';
+import LoadingScreen from './LoadingScreen';
 
 class Game extends React.Component {
   state = {
-    capitalCity: "",
+    capitalCity: '',
     countries: [],
+    options: [],
     answer: null,
     score: 0,
-    selectedCountry: null,
-    disabled: false,
   };
 
-  componentDidMount() {
-    this.setCountries(2000);
+  async componentDidMount() {
+    const response = await countriesService.get('/all', {
+      params: {
+        fields: 'name;capital',
+      },
+    });
+
+    this.setState({
+      countries: response.data.filter((item) => {
+        return item.capital.length !== 0;
+      }),
+    });
+
+    this.setCountries();
   }
 
   onCountryClick = (answer) => {
-    if (this.state.disabled) {
-      return;
-    }
+    // console.log(answer);
 
     this.setState(
       {
-        selectedCountry: answer,
-        disabled: true,
+        score:
+          answer === this.state.answer
+            ? this.state.score + 1
+            : this.state.score,
       },
-      () => console.log("Selected option", this.state.selectedCountry)
+      () => console.log('Selected option', this.state.selectedCountry)
     );
-
-    if (answer === this.state.answer) {
-      console.log("Correct.");
-      this.setState((state) => ({ score: state.score + 1 }));
-    } else {
-      console.log("Wrong.");
-    }
 
     this.setCountries();
   };
 
-  setCountries = async (time = 2000) => {
-    const response = await countriesService.get("/all", {
-      params: {
-        fields: "name;capital",
-      },
-    });
-    const countriesList = this.chooseCountries(response.data, 4);
-    let countries = countriesList.map((r) => {
-      return r.name;
-    });
+  setCountries = () => {
+    let options = this.chooseCountries(this.state.countries, 4);
+    // console.log('Options:', options);
+    const answer = this.chooseAnswer(options);
+    // console.log('Answer:', answer);
+    const capitalCity = options[answer].capital;
 
-    const answer = this.chooseAnswer(countriesList);
-    console.log("Answer:", answer);
-    const capitalCity = countriesList[answer].capital;
-
-    setTimeout(() => {
-      this.setState({
-        capitalCity: capitalCity,
-        countries: countries,
-        answer: answer,
-        selectedCountry: null,
-        disabled: false,
-      });
-    }, 0);
+    this.setState({
+      capitalCity: capitalCity,
+      options: options.map((item) => {
+        return item.name;
+      }),
+      answer: answer,
+    });
   };
 
   chooseAnswer(arr) {
@@ -82,7 +76,7 @@ class Game extends React.Component {
       len = arr.length,
       taken = new Array(len);
     if (n > len)
-      throw new RangeError("getRandom: more elements taken than available");
+      throw new RangeError('getRandom: more elements taken than available');
     while (n--) {
       let x = Math.floor(Math.random() * len);
       result[n] = arr[x in taken ? taken[x] : x];
@@ -92,22 +86,19 @@ class Game extends React.Component {
   }
 
   render() {
-    if (!this.state.capitalCity) {
-      return <LoadingScreen />;
-    }
+    // if (!this.state.capitalCity) {
+    //   return <LoadingScreen />;
+    // }
 
     return (
-      <div className='ui container'>
-        <div className='ui centered huge header'>{this.state.capitalCity}</div>
+      <div className="ui container">
+        <div className="ui centered huge header">{this.state.capitalCity}</div>
         <CountryList
-          countries={this.state.countries}
+          countries={this.state.options}
           onCountryClick={this.onCountryClick}
-          answer={this.state.answer}
-          selectedCountry={this.state.selectedCountry}
-          disabled={this.state.disabled}
         />
         <div>
-          <h2 className='score'>{this.state.score}</h2>
+          <h2 className="score">{this.state.score}</h2>
         </div>
       </div>
     );
