@@ -8,6 +8,7 @@ class Map extends React.Component {
     const corner1 = L.latLng(-90, -200);
     const corner2 = L.latLng(90, 200);
     const bounds = L.latLngBounds(corner1, corner2);
+    const url = 'http://tile.stamen.com/terrain-background/{z}/{x}/{y}.jpg';
 
     return (
       <MapContainer
@@ -23,7 +24,7 @@ class Map extends React.Component {
         maxBounds={bounds}
       >
         <TileLayer
-          url="http://tile.stamen.com/terrain-background/{z}/{x}/{y}.jpg"
+          url={url}
           attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, 
           under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. 
           Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under 
