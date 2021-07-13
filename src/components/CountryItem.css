@@ -1,21 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-.city {
+.country {
+  background-color: rgba(240, 240, 240, 100) !important;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
   border: 1px solid #000000 !important;
   margin: 25px;
-  height: 80px;
+  height: 120px;
   line-height: 1.2em;
   font-size: 1.2vw;
   font-family: 'Ubuntu', sans-serif;
 }
 
-.city:hover {
+.country:hover {
   cursor: pointer;
   background-color: green !important;
   color: white;
+}
+
+.flag {
+  width: 65px;
 }
 
 .noselect {

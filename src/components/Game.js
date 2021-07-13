@@ -10,6 +10,7 @@ class Game extends React.Component {
     lat: null,
     long: null,
     countries: [],
+    flags: [],
     options: [],
     answer: null,
     score: 0,
@@ -18,7 +19,7 @@ class Game extends React.Component {
   async componentDidMount() {
     const response = await countriesService.get('/all', {
       params: {
-        fields: 'name;capital;latlng',
+        fields: 'name;capital;latlng;flag',
       },
     });
 
@@ -41,17 +42,25 @@ class Game extends React.Component {
   };
 
   setCountries = () => {
-    let options = this.chooseCountries(this.state.countries, 4);
-    const answer = Math.floor(Math.random() * options.length);
-    const capitalCity = options[answer].capital;
-    const lat = options[answer].latlng[0];
-    const long = options[answer].latlng[1];
+    const countriesList = this.chooseCountries(this.state.countries, 4);
+    const answer = Math.floor(Math.random() * countriesList.length);
+    const capitalCity = countriesList[answer].capital;
+    const lat = countriesList[answer].latlng[0];
+    const long = countriesList[answer].latlng[1];
 
     let countries = this.state.countries;
     if (this.state.countries.length > 4) {
-      const index = countries.indexOf(options[answer]);
+      const index = countries.indexOf(countriesList[answer]);
       countries.splice(index, 1);
     }
+
+    const flags = [];
+    const options = [];
+
+    countriesList.forEach((i) => {
+      options.push(i.name);
+      flags.push(i.flag);
+    });
 
     this.setState({
       countries,
@@ -59,9 +68,8 @@ class Game extends React.Component {
       lat,
       long,
       answer,
-      options: options.map((item) => {
-        return item.name;
-      }),
+      options,
+      flags,
     });
   };
 
@@ -90,13 +98,14 @@ class Game extends React.Component {
           lat={this.state.lat}
           long={this.state.long}
         />
-        <CountryList
-          countries={this.state.options}
-          onCountryClick={this.onCountryClick}
-        />
         <div>
           <h2 className="score">Score: {this.state.score}</h2>
         </div>
+        <CountryList
+          flags={this.state.flags}
+          countries={this.state.options}
+          onCountryClick={this.onCountryClick}
+        />
       </div>
     );
   }

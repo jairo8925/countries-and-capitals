@@ -1,14 +1,15 @@
 import './CountryItem.css';
 import React from 'react';
 
-const CountryItem = ({ country, onCountryClick, option }) => {
+const CountryItem = ({ country, onCountryClick, option, flag }) => {
   return (
-    <div className="six wide column center aligned">
+    <div className="eight wide column center aligned">
       <div
-        className="ui huge segment city noselect"
+        className="ui huge segment country noselect"
         onClick={() => onCountryClick(option)}
       >
         {country}
+        <img className="flag" alt={`Flag of ${country}`} src={flag} />
       </div>
     </div>
   );
