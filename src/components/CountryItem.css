@@ -9,8 +9,8 @@
   border: 1px solid #000000 !important;
   margin: 25px;
   height: 120px;
-  line-height: 1.2em;
-  font-size: 1.2vw;
+  line-height: 1.5em;
+  font-size: 1.2vw !important;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .flag {
-  width: 65px;
+  width: 4.5rem;
 }
 
 .noselect {
