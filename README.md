@@ -16,3 +16,4 @@
 - Add input for number of questions to solve (probably not)
 - Add information about capital city/country as a popup on map (use leaflet's popup)
 - Pan camera to marker (need to learn about hooks)
+- Add country flag next to option
