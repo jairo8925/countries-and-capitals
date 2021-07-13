@@ -7,6 +7,8 @@
   border: 1px solid #000000 !important;
   margin: 25px;
   height: 80px;
+  line-height: 1.2em;
+  font-size: 1.2vw;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -14,4 +16,13 @@
   cursor: pointer;
   background-color: green !important;
   color: white;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
