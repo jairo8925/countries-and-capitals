@@ -5,14 +5,14 @@
 <br></br>
 
 ### TODO:
-- ~~Refactor code into several small components
-- ~~Filter out countries w/o a capital city when accessing RESTCountries API
-- Update option to be red or green according to user's answer
+- <s>Refactor code into several small components</s>
+- <s>Filter out countries w/o a capital city when accessing RESTCountries API</s>
+- Update option to be red or green according to user's answer (maybe)
 - Remove capital city from list once used
 - Add a timer
-- ~~Add picture of capital city's location on Earth
+- <s>Add picture of capital city's location on Earth</s>
 - Add sound to game (also a text-to-speech)
 - Add start and reset button
-- Add input for number of questions to solve
-- Add information about capital city/country as a popup on map
-- Pan camera to marker
+- Add input for number of questions to solve (probably not)
+- Add information about capital city/country as a popup on map (use leaflet's popup)
+- Pan camera to marker (need to learn about hooks)
