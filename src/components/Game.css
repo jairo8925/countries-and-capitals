@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 .score {
+  margin-top: 50px !important;
   text-align: center;
+  font-size: 40px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.capitalCity {
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 50px;
 }
