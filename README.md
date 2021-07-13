@@ -17,3 +17,4 @@
 - Add information about capital city/country as a popup on map (use leaflet's popup)
 - Pan camera to marker (need to learn about hooks)
 - <s>Add country flag next to option</s>
+- Use restcountries.com instead of restcountries.eu
