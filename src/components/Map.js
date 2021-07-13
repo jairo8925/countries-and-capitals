@@ -1,14 +1,20 @@
-import './Map.css';
-import React from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import L from 'leaflet';
+import "./Map.css";
+import React from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import L from "leaflet";
 
 class Map extends React.Component {
   render() {
     const corner1 = L.latLng(-90, -200);
     const corner2 = L.latLng(90, 200);
     const bounds = L.latLngBounds(corner1, corner2);
-    const url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+    let languages = [];
+    if (this.props.info.languages) {
+      languages = this.props.info.languages.map((i) => {
+        return i.name;
+      });
+    }
 
     return (
       <MapContainer
@@ -33,7 +39,10 @@ class Map extends React.Component {
           autoPan={true}
         >
           <Popup>
-            Country information placeholder <br /> Add later.
+            <p>Population: {this.props.info.population}</p>
+            <p>
+              Language(s): {languages.length > 0 ? languages.join(", ") : ""}
+            </p>
           </Popup>
         </Marker>
       </MapContainer>

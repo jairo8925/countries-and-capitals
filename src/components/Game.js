@@ -1,12 +1,13 @@
-import './Game.css';
-import React from 'react';
-import countriesService from '../apis/countries';
-import CountryList from './CountryList';
-import Map from './Map';
+import "./Game.css";
+import React from "react";
+import countriesService from "../apis/countries";
+import CountryList from "./CountryList";
+import Map from "./Map";
 
 class Game extends React.Component {
   state = {
-    capitalCity: '',
+    countryInfo: [],
+    capitalCity: "",
     lat: null,
     long: null,
     countries: [],
@@ -17,11 +18,7 @@ class Game extends React.Component {
   };
 
   async componentDidMount() {
-    const response = await countriesService.get('/all', {
-      params: {
-        fields: 'name;capital;latlng;flag',
-      },
-    });
+    const response = await countriesService.get("/all");
 
     this.setState({
       countries: response.data.filter((item) => {
@@ -62,7 +59,10 @@ class Game extends React.Component {
       flags.push(i.flag);
     });
 
+    console.log(countriesList[answer]);
+
     this.setState({
+      countryInfo: countriesList[answer],
       countries,
       capitalCity,
       lat,
@@ -78,7 +78,7 @@ class Game extends React.Component {
       len = arr.length,
       taken = new Array(len);
     if (n > len)
-      throw new RangeError('getRandom: more elements taken than available');
+      throw new RangeError("getRandom: more elements taken than available");
     while (n--) {
       let x = Math.floor(Math.random() * len);
       result[n] = arr[x in taken ? taken[x] : x];
@@ -89,17 +89,18 @@ class Game extends React.Component {
 
   render() {
     return (
-      <div className="ui container" style={{ paddingTop: '50px' }}>
-        <div className="ui centered huge capitalCity">
+      <div className='ui container' style={{ paddingTop: "50px" }}>
+        <div className='ui centered huge capitalCity'>
           {this.state.capitalCity}
         </div>
         <Map
+          info={this.state.countryInfo}
           city={this.state.capitalCity}
           lat={this.state.lat}
           long={this.state.long}
         />
         <div>
-          <h2 className="score">Score: {this.state.score}</h2>
+          <h2 className='score'>Score: {this.state.score}</h2>
         </div>
         <CountryList
           flags={this.state.flags}
