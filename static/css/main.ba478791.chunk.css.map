@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Game.css"],"names":[],"mappings":"AAAA,MACE,qBAAyB,CACzB,WAAY,CACZ,YACF,CAEA,YACE,cACF,CAEA,OACE,iBACF","file":"main.ba478791.chunk.css","sourcesContent":[".city {\n  border: 2px solid #000000;\n  margin: 25px;\n  height: 150px;\n}\n\n.city:hover {\n  cursor: pointer;\n}\n\n.score {\n  text-align: center;\n}\n"]}
