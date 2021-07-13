@@ -4,6 +4,8 @@ import countriesService from '../apis/countries';
 import CountryList from './CountryList';
 import Map from './Map';
 import LoadingScreen from './LoadingScreen';
+import correctSoundEffect from '../sounds/correct.wav';
+import wrongSoundEffect from '../sounds/wrong.wav';
 
 class Game extends React.Component {
   state = {
@@ -33,9 +35,20 @@ class Game extends React.Component {
   }
 
   onCountryClick = (answer) => {
+    let score = this.state.score;
+    if (answer === this.state.answer) {
+      // play correct answer sound
+      new Audio(correctSoundEffect).play();
+      score++;
+    } else {
+      // play wrong answer sound
+      const audio = new Audio(wrongSoundEffect);
+      audio.volume = 0.25;
+      audio.play();
+    }
+
     this.setState({
-      score:
-        answer === this.state.answer ? this.state.score + 1 : this.state.score,
+      score,
     });
 
     this.setCountries();
