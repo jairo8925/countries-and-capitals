@@ -3,12 +3,12 @@
 .score {
   margin-top: 50px !important;
   text-align: center;
-  font-size: 40px;
+  font-size: 2vw;
   font-family: 'Roboto Mono', monospace;
 }
 
 .capitalCity {
   text-align: center;
   font-family: 'Roboto Mono', monospace;
-  font-size: 50px;
+  font-size: 2.5vw;
 }
