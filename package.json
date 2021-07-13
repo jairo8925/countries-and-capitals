@@ -32,8 +32,8 @@
   },
   "browserslist": [
     ">0.2%",
-   "not dead",
-   "not op_mini all"
+    "not dead",
+    "not op_mini all"
   ],
   "devDependencies": {
     "gh-pages": "^3.2.3"
