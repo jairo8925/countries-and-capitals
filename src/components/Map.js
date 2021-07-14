@@ -1,7 +1,6 @@
-import './Map.css';
-import React from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import L from 'leaflet';
+import "./Map.css";
+import React, { useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 const Map = ({ info }) => {
   const population = Number(info.population).toLocaleString();
@@ -12,37 +11,40 @@ const Map = ({ info }) => {
     .map((i) => {
       return i.name;
     })
-    .join(', ');
+    .join(", ");
   const currencies = info.currencies
     .map((i) => {
       return i.name;
     })
-    .join(', ');
+    .join(", ");
 
-  const corner1 = L.latLng(-90, -200);
-  const corner2 = L.latLng(90, 200);
-  const bounds = L.latLngBounds(corner1, corner2);
-  const url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+  // const url = "https://tiles.wmflabs.org/osm-no-labels/{z}/{x}/{y}.png";
+
+  const [map, setMap] = useState(null);
+  if (map) {
+    map.flyTo([lat, long], 3);
+  }
 
   return (
     <MapContainer
-      center={[5, 0]}
-      zoom={2}
+      center={[lat, long]}
+      zoom={3}
+      whenCreated={setMap}
       doubleClickZoom={false}
       touchZoom={false}
       zoomSnap={false}
       zoomDelta={false}
       trackResize={false}
       scrollWheelZoom={false}
-      maxBoundsViscosity={0.95}
-      maxBounds={bounds}
+      dragging={false}
     >
       <TileLayer
         url={url}
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      <Marker position={[lat, long]} keepInView={true} autoPan={true}>
-        <Popup className="info">
+      <Marker position={[lat, long]} keepInView={true}>
+        <Popup className='info' autoClose={false}>
           <p>
             <b>Population:</b> {population}
           </p>
