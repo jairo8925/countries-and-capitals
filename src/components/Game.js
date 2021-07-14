@@ -142,6 +142,10 @@ class Game extends React.Component {
           {this.state.capitalCity}
         </div>
         <Map info={this.state.countryInfo} city={this.state.capitalCity} />
+        <CountryList
+          countries={this.state.options}
+          onCountryClick={this.onCountryClick}
+        />
         <div className='ui noselect'>
           <h3 className='ui score huge header noselect'>
             Score: {this.state.score}{" "}
@@ -149,11 +153,6 @@ class Game extends React.Component {
             {button}
           </h3>
         </div>
-
-        <CountryList
-          countries={this.state.options}
-          onCountryClick={this.onCountryClick}
-        />
       </div>
     );
   }

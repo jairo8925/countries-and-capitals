@@ -1,10 +1,10 @@
-import React from 'react';
-import CountryItem from './CountryItem';
+import React from "react";
+import CountryItem from "./CountryItem";
 
 const CountryList = ({ countries, onCountryClick }) => {
   return (
-    <div className="ui two centered grid">
-      <div className="sixteen column centered row">
+    <div className='ui two centered grid'>
+      <div className='sixteen column centered row'>
         <CountryItem
           country={countries[0]}
           onCountryClick={onCountryClick}
@@ -16,7 +16,7 @@ const CountryList = ({ countries, onCountryClick }) => {
           option={1}
         />
       </div>
-      <div className="sixteen column centered row">
+      <div className='sixteen column centered row'>
         <CountryItem
           country={countries[2]}
           onCountryClick={onCountryClick}
