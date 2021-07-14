@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 
 .country {
   background-color: rgba(240, 240, 240, 100) !important;
@@ -10,8 +10,8 @@
   margin: 25px;
   height: 120px;
   line-height: 1.5em;
-  font-size: 1.2vw !important;
-  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.2vw;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .country:hover {

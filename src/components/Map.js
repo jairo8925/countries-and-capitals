@@ -1,6 +1,6 @@
 import "./Map.css";
 import React, { useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Tooltip, TileLayer } from "react-leaflet";
 
 const Map = ({ info }) => {
   const population = Number(info.population).toLocaleString();
@@ -18,8 +18,7 @@ const Map = ({ info }) => {
     })
     .join(", ");
 
-  const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-  // const url = "https://tiles.wmflabs.org/osm-no-labels/{z}/{x}/{y}.png";
+  const url = "https://tiles.wmflabs.org/osm-no-labels/{z}/{x}/{y}.png";
 
   const [map, setMap] = useState(null);
   if (map) {
@@ -44,7 +43,7 @@ const Map = ({ info }) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       <Marker position={[lat, long]} keepInView={true}>
-        <Popup className='info' autoClose={false}>
+        <Tooltip className='info' permanent>
           <p>
             <b>Population:</b> {population}
           </p>
@@ -57,7 +56,7 @@ const Map = ({ info }) => {
           <p>
             <b>Currencies:</b> {currencies}
           </p>
-        </Popup>
+        </Tooltip>
       </Marker>
     </MapContainer>
   );

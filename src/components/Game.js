@@ -1,15 +1,15 @@
-import './Game.css';
-import React from 'react';
-import countriesService from '../apis/countries';
-import CountryList from './CountryList';
-import Map from './Map';
-import LoadingScreen from './LoadingScreen';
-import correctSoundEffect from '../sounds/correct.wav';
-import wrongSoundEffect from '../sounds/wrong.wav';
+import "./Game.css";
+import React from "react";
+import countriesService from "../apis/countries";
+import CountryList from "./CountryList";
+import Map from "./Map";
+import LoadingScreen from "./LoadingScreen";
+import correctSoundEffect from "../sounds/correct.wav";
+import wrongSoundEffect from "../sounds/wrong.wav";
 
 class Game extends React.Component {
   state = {
-    capitalCity: '',
+    capitalCity: "",
     countries: [],
     options: [],
     answer: null,
@@ -18,12 +18,16 @@ class Game extends React.Component {
   };
 
   async componentDidMount() {
-    const response = await countriesService.get('/all', {
+    const response = await countriesService.get("/all", {
       params: {
         fields:
-          'name;capital;flag;languages;population;latlng;subregion;currencies',
+          "name;capital;flag;languages;population;latlng;subregion;currencies",
       },
     });
+
+    const toDelete = new Set(["Holy See"]);
+    response.data = response.data.filter((obj) => !toDelete.has(obj.name));
+    console.log(response.data);
 
     this.setState({
       countries: response.data.filter((item) => {
@@ -82,7 +86,7 @@ class Game extends React.Component {
       taken = new Array(len);
     if (n > len)
       throw new RangeError(
-        'chooseCountries: more elements taken than available'
+        "chooseCountries: more elements taken than available"
       );
     while (n--) {
       let x = Math.floor(Math.random() * len);
@@ -98,12 +102,14 @@ class Game extends React.Component {
     }
 
     return (
-      <div className="ui container" style={{ paddingTop: '50px' }}>
-        <div className="ui centered huge capitalCity">
+      <div className='ui container' style={{ paddingTop: "50px" }}>
+        <div className='ui centered huge header capitalCity noselect'>
           {this.state.capitalCity}
         </div>
         <Map info={this.state.countryInfo} city={this.state.capitalCity} />
-        <div className="score">Score: {this.state.score}</div>
+        <div className='ui huge header score noselect'>
+          Score: {this.state.score}
+        </div>
         <CountryList
           countries={this.state.options}
           onCountryClick={this.onCountryClick}
