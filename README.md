@@ -14,6 +14,6 @@
 - Add sound to game (also a text-to-speech)
 - Add start and reset button
 - Add input for number of questions to solve (probably not)
-- Add information about capital city/country as a popup on map (use leaflet's popup)
+- <s>Add information about capital city/country as a popup on map (use leaflet's popup)</s>
 - Pan camera to marker (need to learn about hooks)
 - <s>Add country flag next to option</s>
