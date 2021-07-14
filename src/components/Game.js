@@ -15,6 +15,7 @@ class Game extends React.Component {
     answer: null,
     score: 0,
     countryInfo: null,
+    total: 0,
   };
 
   async componentDidMount() {
@@ -53,6 +54,7 @@ class Game extends React.Component {
 
     this.setState({
       score,
+      total: this.state.total + 1,
     });
 
     this.setCountries();
@@ -108,7 +110,8 @@ class Game extends React.Component {
         </div>
         <Map info={this.state.countryInfo} city={this.state.capitalCity} />
         <div className='ui huge header score noselect'>
-          Score: {this.state.score}
+          Score: {this.state.score}{" "}
+          {this.state.total !== 0 ? `/ ${this.state.total}` : ""}
         </div>
         <CountryList
           countries={this.state.options}
