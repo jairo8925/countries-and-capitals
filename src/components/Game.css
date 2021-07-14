@@ -11,10 +11,6 @@
   font-family: "Roboto Mono", monospace !important;
 }
 
-.resetButton:hover {
-  cursor: pointer;
-}
-
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;

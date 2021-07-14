@@ -120,20 +120,36 @@ class Game extends React.Component {
       return <LoadingScreen />;
     }
 
+    let button;
+    if (this.state.total !== 0) {
+      button = (
+        <div
+          className='compact ui animated button'
+          onClick={this.onResetClick}
+          tabIndex='0'
+        >
+          <div className='visible content'>Reset</div>
+          <div className='hidden content'>
+            <i className='undo alternate icon'></i>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className='ui container' style={{ paddingTop: "50px" }}>
         <div className='ui centered huge header capitalCity noselect'>
           {this.state.capitalCity}
         </div>
         <Map info={this.state.countryInfo} city={this.state.capitalCity} />
-        <div className='ui huge header score noselect'>
-          Score: {this.state.score}{" "}
-          {this.state.total !== 0 ? `/ ${this.state.total}` : ""}
+        <div className='ui noselect'>
+          <h3 className='ui score huge header noselect'>
+            Score: {this.state.score}{" "}
+            {this.state.total !== 0 ? `out of ${this.state.total}` : ""}{" "}
+            {button}
+          </h3>
         </div>
-        <button className='ui labeled icon button' onClick={this.onResetClick}>
-          <i className='undo alternate icon'></i>
-          Reset
-        </button>
+
         <CountryList
           countries={this.state.options}
           onCountryClick={this.onCountryClick}
