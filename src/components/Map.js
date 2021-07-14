@@ -29,6 +29,7 @@ const Map = ({ info }) => {
     <MapContainer
       center={[lat, long]}
       zoom={3}
+      zoomControl={false}
       whenCreated={setMap}
       doubleClickZoom={false}
       touchZoom={false}
