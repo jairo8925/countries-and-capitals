@@ -5,6 +5,8 @@
   border: 1px solid black;
 }
 
-.info p {
+.info {
   margin: 3px 0;
+  width: 150px;
+  white-space: normal;
 }

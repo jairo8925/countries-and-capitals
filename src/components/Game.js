@@ -8,15 +8,20 @@ import correctSoundEffect from "../sounds/correct.wav";
 import wrongSoundEffect from "../sounds/wrong.wav";
 
 class Game extends React.Component {
-  state = {
-    capitalCity: "",
-    countries: [],
-    options: [],
-    answer: null,
-    score: 0,
-    countryInfo: null,
-    total: 0,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      history: [],
+      capitalCity: "",
+      countries: [],
+      options: [],
+      answer: null,
+      score: 0,
+      countryInfo: null,
+      total: 0,
+    };
+  }
 
   async componentDidMount() {
     const response = await countriesService.get("/all", {
@@ -28,12 +33,13 @@ class Game extends React.Component {
 
     const toDelete = new Set(["Holy See"]);
     response.data = response.data.filter((obj) => !toDelete.has(obj.name));
-    console.log(response.data);
+    const countries = response.data.filter((item) => {
+      return item.capital.length !== 0;
+    });
 
     this.setState({
-      countries: response.data.filter((item) => {
-        return item.capital.length !== 0;
-      }),
+      countries,
+      history: countries,
     });
 
     this.setCountries();
@@ -66,10 +72,8 @@ class Game extends React.Component {
     const capitalCity = options[answer].capital;
 
     let countries = this.state.countries;
-    if (this.state.countries.length > 4) {
-      const index = countries.indexOf(options[answer]);
-      countries.splice(index, 1);
-    }
+    const index = countries.indexOf(options[answer]);
+    countries.splice(index, 1);
 
     const countryInfo = options[answer];
 
@@ -98,6 +102,19 @@ class Game extends React.Component {
     return result;
   }
 
+  onResetClick = () => {
+    this.setState({
+      countries: this.state.history,
+      capitalCity: "",
+      options: [],
+      answer: null,
+      score: 0,
+      countryInfo: null,
+      total: 0,
+    });
+    this.setCountries();
+  };
+
   render() {
     if (!this.state.countryInfo) {
       return <LoadingScreen />;
@@ -113,6 +130,10 @@ class Game extends React.Component {
           Score: {this.state.score}{" "}
           {this.state.total !== 0 ? `/ ${this.state.total}` : ""}
         </div>
+        <button className='ui labeled icon button' onClick={this.onResetClick}>
+          <i className='undo alternate icon'></i>
+          Reset
+        </button>
         <CountryList
           countries={this.state.options}
           onCountryClick={this.onCountryClick}
