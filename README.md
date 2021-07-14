@@ -11,9 +11,9 @@
 - <s>Remove capital city from list once used</s>
 - Add a timer
 - <s>Add picture of capital city's location on Earth</s>
-- Add sound to game (also a text-to-speech)
+- <s>Add sound to game</s> also a text-to-speech (halfway done)
 - Add start and reset button
 - Add input for number of questions to solve (probably not)
 - <s>Add information about capital city/country as a popup on map (use leaflet's popup)</s>
-- Pan camera to marker (need to learn about hooks)
+- <s>Pan camera to marker (need to learn about hooks)</s>
 - <s>Add country flag next to option</s>
