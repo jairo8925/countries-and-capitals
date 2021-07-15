@@ -9,7 +9,21 @@
 .capitalCity {
   text-align: center;
   font-family: "Roboto Mono", monospace !important;
-  margin: 0 !important;
+  position: absolute;
+  flex: 0 1 auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.buttonsContainer {
+  flex: 0 1 auto;
+  margin-left: auto;
+}
+
+.titleHeader {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
 }
 
 .noselect {

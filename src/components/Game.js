@@ -20,6 +20,7 @@ class Game extends React.Component {
       score: 0,
       countryInfo: null,
       total: 0,
+      audio: true,
     };
   }
 
@@ -47,14 +48,16 @@ class Game extends React.Component {
 
   onCountryClick = (answer) => {
     let score = this.state.score;
+    let audio;
     if (answer === this.state.answer) {
-      // play correct answer sound
-      new Audio(correctSoundEffect).play();
+      audio = new Audio(correctSoundEffect);
       score++;
     } else {
-      // play wrong answer sound
-      const audio = new Audio(wrongSoundEffect);
+      audio = new Audio(wrongSoundEffect);
       audio.volume = 0.25;
+    }
+
+    if (this.state.audio) {
       audio.play();
     }
 
@@ -115,43 +118,69 @@ class Game extends React.Component {
     this.setCountries();
   };
 
+  onAudioClick = () => {
+    this.setState({
+      audio: !this.state.audio,
+    });
+  };
+
   render() {
     if (!this.state.countryInfo) {
       return <LoadingScreen />;
     }
 
-    let button;
-    if (this.state.total !== 0) {
-      button = (
-        <div
-          className='compact ui animated button'
-          onClick={this.onResetClick}
-          tabIndex='0'
-        >
-          <div className='visible content'>Reset</div>
-          <div className='hidden content'>
-            <i className='undo alternate icon'></i>
-          </div>
+    let resetButton = (
+      <div
+        class='ui right floated secondary animated button resetButton'
+        tabindex='0'
+      >
+        <div class='visible content'>Reset Game</div>
+        <div class='hidden content'>
+          <i class='undo alternate icon'></i>
         </div>
+      </div>
+    );
+
+    let audioButton;
+    if (this.state.audio) {
+      audioButton = (
+        <button
+          className='positive ui right floated button audioButton'
+          onClick={this.onAudioClick}
+        >
+          Audio On
+        </button>
+      );
+    } else {
+      audioButton = (
+        <button
+          className='negative ui right floated button audioButton'
+          onClick={this.onAudioClick}
+        >
+          Audio Off
+        </button>
       );
     }
 
     return (
-      <div className='ui container' style={{ paddingTop: "50px" }}>
-        <div className='ui centered huge header capitalCity noselect'>
-          {this.state.capitalCity}
+      <div className='ui container' style={{ paddingTop: "30px" }}>
+        <div className='titleHeader'>
+          <div className='ui centered huge header capitalCity noselect'>
+            {this.state.capitalCity}
+          </div>
+          <div className='small ui buttons buttonsContainer'>
+            {resetButton}
+            {audioButton}
+          </div>
         </div>
         <Map info={this.state.countryInfo} city={this.state.capitalCity} />
         <CountryList
           countries={this.state.options}
           onCountryClick={this.onCountryClick}
         />
-        <div className='ui noselect'>
-          <h3 className='ui score huge header noselect'>
-            Score: {this.state.score}{" "}
-            {this.state.total !== 0 ? `out of ${this.state.total}` : ""}{" "}
-            {button}
-          </h3>
+        <div className='ui score huge header noselect'>
+          Score: {this.state.score}{" "}
+          {this.state.total !== 0 ? `out of ${this.state.total}` : ""}{" "}
         </div>
       </div>
     );
