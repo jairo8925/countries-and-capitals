@@ -12,11 +12,11 @@ const Map = ({ info }) => {
       return i.name;
     })
     .join(", ");
-  const currencies = info.currencies
-    .map((i) => {
-      return i.name;
-    })
-    .join(", ");
+  // const currencies = info.currencies
+  //   .map((i) => {
+  //     return i.name;
+  //   })
+  //   .join(", ");
 
   const url = "https://tiles.wmflabs.org/osm-no-labels/{z}/{x}/{y}.png";
 
@@ -53,9 +53,6 @@ const Map = ({ info }) => {
           </p>
           <p>
             <b>Languages:</b> {languages}
-          </p>
-          <p>
-            <b>Currencies:</b> {currencies}
           </p>
         </Tooltip>
       </Marker>
