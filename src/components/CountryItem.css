@@ -14,10 +14,12 @@
   font-family: "Ubuntu", sans-serif;
 }
 
-.country:hover {
-  cursor: pointer;
-  background-color: green !important;
-  color: white;
+@media (hover: hover) {
+  .country:hover {
+    cursor: pointer;
+    background-color: green !important;
+    color: white;
+  }
 }
 
 .flag {
@@ -31,4 +33,15 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@media screen and (max-width: 600px) {
+  .country {
+    height: 60px;
+    font-size: 1vw !important;
+  }
+
+  .flag {
+    width: 2.5rem;
+  }
 }

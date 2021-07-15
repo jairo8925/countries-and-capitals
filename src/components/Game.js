@@ -165,12 +165,12 @@ class Game extends React.Component {
     return (
       <div className='ui container' style={{ paddingTop: "30px" }}>
         <div className='titleHeader'>
-          <div className='ui centered huge header capitalCity noselect'>
-            {this.state.capitalCity}
-          </div>
           <div className='small ui buttons buttonsContainer'>
             {resetButton}
             {audioButton}
+          </div>
+          <div className='ui centered huge header capitalCity noselect'>
+            {this.state.capitalCity}
           </div>
         </div>
         <Map info={this.state.countryInfo} city={this.state.capitalCity} />

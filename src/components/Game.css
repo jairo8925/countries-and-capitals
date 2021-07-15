@@ -13,6 +13,7 @@
   flex: 0 1 auto;
   left: 50%;
   transform: translateX(-50%);
+  margin: 0 !important;
 }
 
 .buttonsContainer {
@@ -33,4 +34,20 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@media screen and (max-width: 600px) {
+  .titleHeader {
+    display: block;
+  }
+
+  .capitalCity {
+    position: relative;
+  }
+
+  .buttonsContainer {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
 }
