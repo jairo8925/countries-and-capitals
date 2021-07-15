@@ -23,7 +23,7 @@
 }
 
 .flag {
-  width: 4.5rem;
+  width: 4rem;
 }
 
 .noselect {
@@ -38,10 +38,14 @@
 @media screen and (max-width: 600px) {
   .country {
     height: 60px;
-    font-size: 1vw !important;
+    font-size: 8pt !important;
   }
 
   .flag {
     width: 2.5rem;
+  }
+
+  .score {
+    font-size: 11pt !important;
   }
 }

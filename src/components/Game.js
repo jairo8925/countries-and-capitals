@@ -164,10 +164,7 @@ class Game extends React.Component {
     }
 
     return (
-      <div
-        className='ui container'
-        style={{ paddingTop: "25px", paddingBottom: "25px" }}
-      >
+      <div className='ui container game'>
         <div className='titleHeader'>
           <div className='small ui buttons buttonsContainer'>
             {audioButton}
