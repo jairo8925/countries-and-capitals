@@ -1,11 +1,11 @@
-import "./Game.css";
-import React from "react";
-import countriesService from "../apis/countries";
-import CountryList from "./CountryList";
-import Map from "./Map";
-import LoadingScreen from "./LoadingScreen";
-import correctSoundEffect from "../sounds/correct.wav";
-import wrongSoundEffect from "../sounds/wrong.wav";
+import './Game.css';
+import React from 'react';
+import countriesService from '../apis/countries';
+import CountryList from './CountryList';
+import Map from './Map';
+import LoadingScreen from './LoadingScreen';
+import correctSoundEffect from '../sounds/correct.wav';
+import wrongSoundEffect from '../sounds/wrong.wav';
 
 class Game extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Game extends React.Component {
 
     this.state = {
       history: [],
-      capitalCity: "",
+      capitalCity: '',
       countries: [],
       options: [],
       answer: null,
@@ -25,14 +25,14 @@ class Game extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await countriesService.get("/all", {
+    const response = await countriesService.get('/all', {
       params: {
         fields:
-          "name;capital;flag;languages;population;latlng;subregion;currencies",
+          'name;capital;flag;languages;population;latlng;subregion;currencies',
       },
     });
 
-    const toDelete = new Set(["Holy See"]);
+    const toDelete = new Set(['Holy See']);
     response.data = response.data.filter((obj) => !toDelete.has(obj.name));
     const countries = response.data.filter((item) => {
       return item.capital.length !== 0;
@@ -95,7 +95,7 @@ class Game extends React.Component {
       taken = new Array(len);
     if (n > len)
       throw new RangeError(
-        "chooseCountries: more elements taken than available"
+        'chooseCountries: more elements taken than available'
       );
     while (n--) {
       let x = Math.floor(Math.random() * len);
@@ -108,7 +108,7 @@ class Game extends React.Component {
   onResetClick = () => {
     this.setState({
       countries: this.state.history,
-      capitalCity: "",
+      capitalCity: '',
       options: [],
       answer: null,
       score: 0,
@@ -131,12 +131,13 @@ class Game extends React.Component {
 
     let resetButton = (
       <div
-        class='ui right floated secondary animated button resetButton'
-        tabindex='0'
+        className="ui right floated secondary animated button resetButton"
+        onClick={this.onResetClick}
+        tabIndex="0"
       >
-        <div class='visible content'>Reset Game</div>
-        <div class='hidden content'>
-          <i class='undo alternate icon'></i>
+        <div className="visible content">Reset Game</div>
+        <div className="hidden content">
+          <i className="undo alternate icon"></i>
         </div>
       </div>
     );
@@ -145,7 +146,7 @@ class Game extends React.Component {
     if (this.state.audio) {
       audioButton = (
         <button
-          className='positive ui right floated button audioButton'
+          className="positive ui right floated button audioButton"
           onClick={this.onAudioClick}
         >
           Audio On
@@ -154,7 +155,7 @@ class Game extends React.Component {
     } else {
       audioButton = (
         <button
-          className='negative ui right floated button audioButton'
+          className="negative ui right floated button audioButton"
           onClick={this.onAudioClick}
         >
           Audio Off
@@ -163,12 +164,15 @@ class Game extends React.Component {
     }
 
     return (
-      <div className='ui container' style={{ paddingTop: "30px" }}>
-        <div className='titleHeader'>
-          <div className='ui centered huge header capitalCity noselect'>
+      <div
+        className="ui container"
+        style={{ paddingTop: '30px', paddingBottom: '25px' }}
+      >
+        <div className="titleHeader">
+          <div className="ui centered huge header capitalCity noselect">
             {this.state.capitalCity}
           </div>
-          <div className='small ui buttons buttonsContainer'>
+          <div className="small ui buttons buttonsContainer">
             {resetButton}
             {audioButton}
           </div>
@@ -178,9 +182,9 @@ class Game extends React.Component {
           countries={this.state.options}
           onCountryClick={this.onCountryClick}
         />
-        <div className='ui score huge header noselect'>
-          Score: {this.state.score}{" "}
-          {this.state.total !== 0 ? `out of ${this.state.total}` : ""}{" "}
+        <div className="ui score huge header noselect">
+          Score: {this.state.score}{' '}
+          {this.state.total !== 0 ? `out of ${this.state.total}` : ''}{' '}
         </div>
       </div>
     );
