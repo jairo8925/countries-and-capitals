@@ -169,7 +169,7 @@ class Game extends React.Component {
         style={{ paddingTop: '25px', paddingBottom: '25px' }}
       >
         <div className="titleHeader">
-          <div className="ui centered huge header capitalCity noselect">
+          <div className="ui capitalCity noselect">
             {this.state.capitalCity}
           </div>
           <div className="small ui buttons buttonsContainer">
