@@ -173,8 +173,8 @@ class Game extends React.Component {
             {this.state.capitalCity}
           </div>
           <div className="small ui buttons buttonsContainer">
-            {resetButton}
             {audioButton}
+            {resetButton}
           </div>
         </div>
         <Map info={this.state.countryInfo} city={this.state.capitalCity} />
