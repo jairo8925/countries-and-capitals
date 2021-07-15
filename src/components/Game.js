@@ -131,12 +131,13 @@ class Game extends React.Component {
 
     let resetButton = (
       <div
-        class='ui right floated secondary animated button resetButton'
-        tabindex='0'
+        className='ui right floated secondary animated button resetButton'
+        onClick={this.onResetClick}
+        tabIndex='0'
       >
-        <div class='visible content'>Reset Game</div>
-        <div class='hidden content'>
-          <i class='undo alternate icon'></i>
+        <div className='visible content'>Reset Game</div>
+        <div className='hidden content'>
+          <i className='undo alternate icon'></i>
         </div>
       </div>
     );
@@ -163,11 +164,14 @@ class Game extends React.Component {
     }
 
     return (
-      <div className='ui container' style={{ paddingTop: "30px" }}>
+      <div
+        className='ui container'
+        style={{ paddingTop: "25px", paddingBottom: "25px" }}
+      >
         <div className='titleHeader'>
           <div className='small ui buttons buttonsContainer'>
-            {resetButton}
             {audioButton}
+            {resetButton}
           </div>
           <div className='ui centered huge header capitalCity noselect'>
             {this.state.capitalCity}
