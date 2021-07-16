@@ -169,6 +169,12 @@ class Game extends React.Component {
           <div className='small ui buttons buttonsContainer'>
             {audioButton}
             {resetButton}
+            <button
+              className="ui primary icon button"
+              onClick={this.props.onHomeClick}
+            >
+              <i className="home icon"></i>
+            </button>
           </div>
           <div className='ui centered huge header capitalCity noselect'>
             {this.state.capitalCity}

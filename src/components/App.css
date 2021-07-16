@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+.h1 {
+  height: 100%;
+}
+
+.title {
+  text-align: center;
+  padding-top: 10%;
+}
+
+.title h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 3vw;
+}
+
+.title p {
+  margin: 25px 0;
+  text-align: center;
+  font-size: 1.5vw;
+}
+
+.start-button {
+  margin-top: 8vw !important;
+  font-size: 2vw !important;
+  font-family: 'Roboto Mono', monospace !important;
+}
+
+.start-button {
+  cursor: pointer;
+}
