@@ -8,10 +8,16 @@
 
 .info {
   margin: 3px 0;
-  width: 150px;
-  white-space: normal;
 }
 
 .info p {
-  margin-bottom: 5px;
+  margin: 10px 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .info {
+    margin: 3px 0;
+    width: 150px;
+    white-space: normal;
+  }
 }
