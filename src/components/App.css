@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+.home-container {
+  padding-bottom: 50px;
+}
 
 .h1 {
   height: 100%;
@@ -10,19 +14,20 @@
 }
 
 .title h1 {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 55px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 4em;
 }
 
 .title p {
   text-align: center;
-  font-size: 30px;
+  font-size: 2em;
 }
 
 .start-button {
+  text-align: center;
   margin-top: 50px !important;
-  font-size: 50px !important;
-  font-family: 'Roboto Mono', monospace !important;
+  font-size: 3em !important;
+  font-family: "Roboto Mono", monospace !important;
 }
 
 .start-button {
