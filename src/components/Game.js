@@ -179,14 +179,14 @@ class Game extends React.Component {
         <div className='ui centered huge header capital-city noselect'>
           {this.state.capitalCity}
         </div>
-        <CountryList
-          countries={this.state.options}
-          onCountryClick={this.onCountryClick}
-        />
         <div className='ui score huge header noselect'>
           Score: {this.state.score}{" "}
           {this.state.total !== 0 ? `out of ${this.state.total}` : ""}{" "}
         </div>
+        <CountryList
+          countries={this.state.options}
+          onCountryClick={this.onCountryClick}
+        />
       </div>
     );
   }
