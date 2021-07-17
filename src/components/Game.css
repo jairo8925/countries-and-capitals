@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
 .game {
-  padding: 25px 0;
+  padding: 10px 0;
 }
 
 .score {
@@ -10,25 +10,14 @@
   margin-top: 10px !important;
 }
 
-.capitalCity {
+.capital-city {
   text-align: center;
   font-family: "Roboto Mono", monospace;
-  font-size: 35px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0 !important;
+  font-size: 50px !important;
 }
 
-.buttonsContainer {
-  margin-left: auto !important;
-}
-
-.titleHeader {
-  display: flex;
-  justify-content: flex-start;
-  position: relative;
-  align-items: center;
+.button {
+  border-radius: 0 !important;
 }
 
 .noselect {
@@ -41,22 +30,9 @@
 }
 
 @media screen and (max-width: 600px) {
-  .titleHeader {
-    display: block;
-  }
-
-  .capitalCity {
-    padding-top: 5px !important;
-    position: relative;
-  }
-
-  .buttonsContainer {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .game {
-    padding: 10px 0 !important;
+  .capital-city {
+    text-align: center;
+    font-family: "Roboto Mono", monospace;
+    font-size: 3em !important;
   }
 }

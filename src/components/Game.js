@@ -54,7 +54,7 @@ class Game extends React.Component {
       score++;
     } else {
       audio = new Audio(wrongSoundEffect);
-      audio.volume = 0.25;
+      audio.volume = 0.15;
     }
 
     if (this.state.audio) {
@@ -135,7 +135,7 @@ class Game extends React.Component {
         onClick={this.onResetClick}
         tabIndex='0'
       >
-        <div className='visible content'>Reset Game</div>
+        <div className='visible content'>Reset</div>
         <div className='hidden content'>
           <i className='undo alternate icon'></i>
         </div>
@@ -165,22 +165,20 @@ class Game extends React.Component {
 
     return (
       <div className='ui container game'>
-        <div className='titleHeader'>
-          <div className='small ui buttons buttonsContainer'>
-            {audioButton}
-            {resetButton}
-            <button
-              className="ui primary icon button"
-              onClick={this.props.onHomeClick}
-            >
-              <i className="home icon"></i>
-            </button>
-          </div>
-          <div className='ui centered huge header capitalCity noselect'>
-            {this.state.capitalCity}
-          </div>
+        <div className='three ui buttons buttons-container'>
+          {audioButton}
+          <button
+            className='ui primary icon button'
+            onClick={this.props.onHomeClick}
+          >
+            <i className='home icon'></i>
+          </button>
+          {resetButton}
         </div>
         <Map info={this.state.countryInfo} city={this.state.capitalCity} />
+        <div className='ui centered huge header capital-city noselect'>
+          {this.state.capitalCity}
+        </div>
         <CountryList
           countries={this.state.options}
           onCountryClick={this.onCountryClick}
