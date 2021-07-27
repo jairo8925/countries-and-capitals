@@ -20,6 +20,7 @@ class Game extends React.Component {
       score: 0,
       countryInfo: null,
       total: 0,
+      attempts: 0,
       audio: true,
     };
   }
@@ -119,6 +120,7 @@ class Game extends React.Component {
     }
 
     this.setState({
+      attempts: this.state.attempts + 1,
       score,
     });
 
@@ -254,7 +256,11 @@ class Game extends React.Component {
         </div>
         <div className='ui score huge header noselect'>
           Score: {this.state.score}{" "}
-          {this.state.total !== 0 ? `out of ${this.state.total}` : ""}{" "}
+          {this.state.attempts !== 0
+            ? `out of ${this.state.total} (${
+                this.state.attempts - this.state.score
+              } wrong)`
+            : ""}{" "}
         </div>
         <CountryList
           countries={this.state.options}
