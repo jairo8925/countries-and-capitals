@@ -41,6 +41,7 @@ class Game extends React.Component {
     this.setState({
       countries,
       history: countries,
+      total: countries.length,
     });
 
     this.setCountries();
@@ -63,7 +64,6 @@ class Game extends React.Component {
 
     this.setState({
       score,
-      total: this.state.total + 1,
     });
 
     this.setCountries();
@@ -113,7 +113,6 @@ class Game extends React.Component {
       answer: null,
       score: 0,
       countryInfo: null,
-      total: 0,
     });
     this.setCountries();
   };
