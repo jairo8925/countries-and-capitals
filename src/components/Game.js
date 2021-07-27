@@ -1,11 +1,11 @@
-import "./Game.css";
-import React from "react";
-import countriesService from "../apis/countries";
-import CountryList from "./CountryList";
-import Map from "./Map";
-import LoadingScreen from "./LoadingScreen";
-import correctSoundEffect from "../sounds/correct.wav";
-import wrongSoundEffect from "../sounds/wrong.wav";
+import './Game.css';
+import React from 'react';
+import countriesService from '../apis/countries';
+import CountryList from './CountryList';
+import Map from './Map';
+import LoadingScreen from './LoadingScreen';
+import correctSoundEffect from '../sounds/correct.wav';
+import wrongSoundEffect from '../sounds/wrong.wav';
 
 class Game extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Game extends React.Component {
 
     this.state = {
       history: [],
-      capitalCity: "",
+      capitalCity: '',
       countries: [],
       options: [],
       answer: null,
@@ -26,74 +26,71 @@ class Game extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await countriesService.get("/all", {
+    const response = await countriesService.get('/all', {
       params: {
         fields:
-          "name;capital;flag;languages;population;latlng;subregion;currencies",
+          'name;capital;flag;languages;population;latlng;subregion;currencies',
       },
     });
 
     // Delete dependencies from question set (no easy way to do this at the moment :P)
     const toDelete = new Set([
-      "Åland Islands",
-      "American Samoa",
-      "Anguilla",
-      "Aruba",
-      "Azerbaijan",
-      "Bermuda",
-      "Bonaire, Sint Eustatius and Saba",
-      "Bouvet Island",
-      "British Indian Ocean Territory",
-      "United States Minor Outlying Islands",
-      "Virgin Islands (British)",
-      "Virgin Islands (U.S.)",
-      "Cayman Islands",
-      "Cocos (Keeling) Islands",
-      "Christmas Island",
-      "Cook Islands",
-      "Curaçao",
-      "Falkland Islands (Malvinas)",
-      "Faroe Islands",
-      "French Guiana",
-      "French Polynesia",
-      "French Southern Territories",
-      "Gibraltar",
-      "Guadeloupe",
-      "Guam",
-      "Guernsey",
-      "Heard Island and McDonald Islands",
-      "Holy See",
-      "Isle of Man",
-      "Jersey",
-      "Macao",
-      "Martinique",
-      "Mayotte",
-      "Montserrat",
-      "New Caledonia",
-      "Norfolk Island",
-      "Northern Mariana Islands",
-      "Réunion",
-      "Saint Barthélemy",
-      "Saint Helena, Ascension and Tristan da Cunha",
-      "Saint Martin (French part)",
-      "Saint Pierre and Miquelon",
-      "Sint Maarten (Dutch part)",
-      "South Georgia and the South Sandwich Islands",
-      "Svalbard and Jan Mayen",
-      "Tokelau",
-      "Turks and Caicos Islands",
-      "Uzbekistan",
-      "Wallis and Futuna",
-      "Western Sahara",
+      'Åland Islands',
+      'American Samoa',
+      'Anguilla',
+      'Aruba',
+      'Azerbaijan',
+      'Bermuda',
+      'Bonaire, Sint Eustatius and Saba',
+      'Bouvet Island',
+      'British Indian Ocean Territory',
+      'United States Minor Outlying Islands',
+      'Virgin Islands (British)',
+      'Virgin Islands (U.S.)',
+      'Cayman Islands',
+      'Cocos (Keeling) Islands',
+      'Christmas Island',
+      'Cook Islands',
+      'Curaçao',
+      'Falkland Islands (Malvinas)',
+      'Faroe Islands',
+      'French Guiana',
+      'French Polynesia',
+      'French Southern Territories',
+      'Gibraltar',
+      'Guadeloupe',
+      'Guam',
+      'Guernsey',
+      'Heard Island and McDonald Islands',
+      'Holy See',
+      'Isle of Man',
+      'Jersey',
+      'Macao',
+      'Martinique',
+      'Mayotte',
+      'Montserrat',
+      'New Caledonia',
+      'Norfolk Island',
+      'Northern Mariana Islands',
+      'Réunion',
+      'Saint Barthélemy',
+      'Saint Helena, Ascension and Tristan da Cunha',
+      'Saint Martin (French part)',
+      'Saint Pierre and Miquelon',
+      'Sint Maarten (Dutch part)',
+      'South Georgia and the South Sandwich Islands',
+      'Svalbard and Jan Mayen',
+      'Tokelau',
+      'Turks and Caicos Islands',
+      'Uzbekistan',
+      'Wallis and Futuna',
+      'Western Sahara',
     ]);
 
     response.data = response.data.filter((obj) => !toDelete.has(obj.name));
     const countries = response.data.filter((item) => {
       return item.capital.length !== 0;
     });
-
-    countries.forEach((e) => console.log(e.name));
-    console.log(countries);
 
     this.setState({
       countries,
@@ -153,7 +150,7 @@ class Game extends React.Component {
       taken = new Array(len);
     if (n > len)
       throw new RangeError(
-        "chooseCountries: more elements taken than available"
+        'chooseCountries: more elements taken than available'
       );
     while (n--) {
       let x = Math.floor(Math.random() * len);
@@ -166,7 +163,7 @@ class Game extends React.Component {
   onResetClick = () => {
     this.setState({
       countries: this.state.history,
-      capitalCity: "",
+      capitalCity: '',
       options: [],
       answer: null,
       score: 0,
@@ -189,26 +186,26 @@ class Game extends React.Component {
 
     let resetButton = (
       <div
-        className='ui right floated secondary animated button resetButton'
+        className="ui right floated secondary animated button resetButton"
         onClick={this.onResetClick}
-        tabIndex='0'
+        tabIndex="0"
       >
-        <div className='visible content'>Reset</div>
-        <div className='hidden content'>
-          <i className='undo alternate icon'></i>
+        <div className="visible content">Reset</div>
+        <div className="hidden content">
+          <i className="undo alternate icon"></i>
         </div>
       </div>
     );
 
     if (this.state.countries.length - 4 === 0) {
       return (
-        <div className='score-container'>
-          <div className='final-score'>
+        <div className="score-container">
+          <div className="final-score">
             <h1>
               Final Score: {this.state.score} out of {this.state.total}
             </h1>
             <button
-              className='ui start-over-button primary button'
+              className="ui start-over-button primary button"
               onClick={this.onResetClick}
             >
               Start Over
@@ -222,7 +219,7 @@ class Game extends React.Component {
     if (this.state.audio) {
       audioButton = (
         <button
-          className='positive ui right floated button audioButton'
+          className="positive ui right floated button audioButton"
           onClick={this.onAudioClick}
         >
           Audio On
@@ -231,7 +228,7 @@ class Game extends React.Component {
     } else {
       audioButton = (
         <button
-          className='negative ui right floated button audioButton'
+          className="negative ui right floated button audioButton"
           onClick={this.onAudioClick}
         >
           Audio Off
@@ -240,28 +237,28 @@ class Game extends React.Component {
     }
 
     return (
-      <div className='ui container game'>
-        <div className='three ui buttons buttons-container'>
+      <div className="ui container game">
+        <div className="three ui buttons buttons-container">
           {audioButton}
           <button
-            className='ui primary icon button'
+            className="ui primary icon button"
             onClick={this.props.onHomeClick}
           >
-            <i className='home icon'></i>
+            <i className="home icon"></i>
           </button>
           {resetButton}
         </div>
         <Map info={this.state.countryInfo} city={this.state.capitalCity} />
-        <div className='ui centered huge header capital-city noselect'>
+        <div className="ui centered huge header capital-city noselect">
           {this.state.capitalCity}
         </div>
-        <div className='ui score huge header noselect'>
-          Score: {this.state.score}{" "}
+        <div className="ui score huge header noselect">
+          Score: {this.state.score}{' '}
           {this.state.attempts !== 0
             ? `out of ${this.state.total} (${
                 this.state.attempts - this.state.score
               } wrong)`
-            : ""}{" "}
+            : ''}{' '}
         </div>
         <CountryList
           countries={this.state.options}
