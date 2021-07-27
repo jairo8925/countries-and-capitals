@@ -32,11 +32,64 @@ class Game extends React.Component {
       },
     });
 
-    const toDelete = new Set(["Holy See"]);
+    // Delete dependencies from question set (no easy way to do this at the moment :P)
+    const toDelete = new Set([
+      "Holy See",
+      "American Samoa",
+      "Anguilla",
+      "Azerbaijan",
+      "Bermuda",
+      "Bouvet Island",
+      "United States Minor Outlying Islands",
+      "Virgin Islands (British)",
+      "Virgin Islands (U.S.)",
+      "Cayman Islands",
+      "Christmas Island",
+      "Curaçao",
+      "Falkland Islands (Malvinas)",
+      "Faroe Islands",
+      "French Guiana",
+      "French Polynesia",
+      "French Southern Territories",
+      "Gibraltar",
+      "Greenland",
+      "Guadeloupe",
+      "Guam",
+      "Guernsey",
+      "Heard Island and McDonald Islands",
+      "Isle of Man",
+      "Jersey",
+      "Kazakhstan",
+      "Macao",
+      "Martinique",
+      "Mayotte",
+      "Montserrat",
+      "New Caledonia",
+      "Norfolk Island",
+      "Northern Mariana Islands",
+      "Puerto Rico",
+      "Réunion",
+      "Saint Barthélemy",
+      "Saint Helena, Ascension and Tristan da Cunha",
+      "Saint Martin (French part)",
+      "Saint Pierre and Miquelon",
+      "Sint Maarten (Dutch part)",
+      "South Georgia and the South Sandwich Islands",
+      "Svalbard and Jan Mayen",
+      "Tokelau",
+      "Turkey",
+      "Turks and Caicos Islands",
+      "Uzbekistan",
+      "Wallis and Futuna",
+      "Western Sahara",
+    ]);
+
     response.data = response.data.filter((obj) => !toDelete.has(obj.name));
     const countries = response.data.filter((item) => {
       return item.capital.length !== 0;
     });
+
+    console.log(countries);
 
     this.setState({
       countries,
