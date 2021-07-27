@@ -34,17 +34,22 @@ class Game extends React.Component {
 
     // Delete dependencies from question set (no easy way to do this at the moment :P)
     const toDelete = new Set([
-      "Holy See",
+      "Åland Islands",
       "American Samoa",
       "Anguilla",
+      "Aruba",
       "Azerbaijan",
       "Bermuda",
+      "Bonaire, Sint Eustatius and Saba",
       "Bouvet Island",
+      "British Indian Ocean Territory",
       "United States Minor Outlying Islands",
       "Virgin Islands (British)",
       "Virgin Islands (U.S.)",
       "Cayman Islands",
+      "Cocos (Keeling) Islands",
       "Christmas Island",
+      "Cook Islands",
       "Curaçao",
       "Falkland Islands (Malvinas)",
       "Faroe Islands",
@@ -52,14 +57,13 @@ class Game extends React.Component {
       "French Polynesia",
       "French Southern Territories",
       "Gibraltar",
-      "Greenland",
       "Guadeloupe",
       "Guam",
       "Guernsey",
       "Heard Island and McDonald Islands",
+      "Holy See",
       "Isle of Man",
       "Jersey",
-      "Kazakhstan",
       "Macao",
       "Martinique",
       "Mayotte",
@@ -67,7 +71,6 @@ class Game extends React.Component {
       "New Caledonia",
       "Norfolk Island",
       "Northern Mariana Islands",
-      "Puerto Rico",
       "Réunion",
       "Saint Barthélemy",
       "Saint Helena, Ascension and Tristan da Cunha",
@@ -77,7 +80,6 @@ class Game extends React.Component {
       "South Georgia and the South Sandwich Islands",
       "Svalbard and Jan Mayen",
       "Tokelau",
-      "Turkey",
       "Turks and Caicos Islands",
       "Uzbekistan",
       "Wallis and Futuna",
@@ -89,12 +91,13 @@ class Game extends React.Component {
       return item.capital.length !== 0;
     });
 
+    countries.forEach((e) => console.log(e.name));
     console.log(countries);
 
     this.setState({
       countries,
       history: countries,
-      total: countries.length,
+      total: countries.length - 4,
     });
 
     this.setCountries();
@@ -193,6 +196,24 @@ class Game extends React.Component {
         </div>
       </div>
     );
+
+    if (this.state.countries.length - 4 === 0) {
+      return (
+        <div className='score-container'>
+          <div className='final-score'>
+            <h1>
+              Final Score: {this.state.score} out of {this.state.total}
+            </h1>
+            <button
+              className='ui start-over-button primary button'
+              onClick={this.onResetClick}
+            >
+              Start Over
+            </button>
+          </div>
+        </div>
+      );
+    }
 
     let audioButton;
     if (this.state.audio) {

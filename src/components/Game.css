@@ -20,6 +20,31 @@
   border-radius: 0 !important;
 }
 
+.score-container {
+  padding-bottom: 50px;
+}
+
+.final-score {
+  text-align: center;
+  padding-top: 10%;
+}
+
+.final-score h1 {
+  font-family: "Roboto Mono", monospace;
+  font-size: 4em;
+}
+
+.start-over-button {
+  text-align: center;
+  margin-top: 50px !important;
+  font-size: 3em !important;
+  font-family: "Roboto Mono", monospace !important;
+}
+
+.start-over-button {
+  cursor: pointer;
+}
+
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
