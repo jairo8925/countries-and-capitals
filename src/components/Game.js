@@ -171,6 +171,7 @@ class Game extends React.Component {
       answer: null,
       score: 0,
       countryInfo: null,
+      attempts: 0,
     });
     this.setCountries();
   };
