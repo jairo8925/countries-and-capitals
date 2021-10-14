@@ -9,7 +9,7 @@ const Map = ({ info }) => {
   const region = info.subregion;
   const languages = info.languages
     .map((i) => {
-      return i.name;
+      return i.get;
     })
     .join(", ");
   // const currencies = info.currencies
